@@ -1,0 +1,78 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        xmlns:h="http://helix-toolkit.org/wpf"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="NuclearProject.MainWindow"
+        Title="Исследование точечной динамики температур элементов ядерного реактора" Height="550" MinHeight="550" Width="820" MinWidth="820">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="124*" />
+            <ColumnDefinition Width="669*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,579.6,0" >
+            <WrapPanel>
+                <Button x:Name="btnReference"
+                    Click="Button_Click_Ref"
+                    Content="Справка" Height="64" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Left"/>
+                <Button x:Name="btnTest"
+                    Click="Button_Click_Tests"
+                    Content="Тесты" Height="64" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Right"/>
+            </WrapPanel>
+            <StackPanel >
+                <Label Content="Мощность: W(t) = W0 + kt"/>
+                <WrapPanel>
+                    <Label Content="W0 = " Width="50" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="txtStartPower"  PreviewTextInput="txtCoefficient_PreviewTextInput"
+                             Height="23" Width="80" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text="3200"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Content="t = " Width="50" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="txtCoefficient" PreviewTextInput="txtCoefficient_PreviewTextInput" 
+                             Height="23" Width="80" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                </WrapPanel>
+            </StackPanel>
+            <Button x:Name="Start" 
+                    Click="Button_Click_Start" 
+                    Height="30" Margin="20, 20, 20, 20" Content="Начать моделирование" />
+        </StackPanel>
+        <TabControl Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Width="580" Margin="0,0,-0.4,-0.2">
+            <TabItem Header="Графики">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="183*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <oxy:Plot Name="plotAverageTau"
+                              Title="Динамика температуры топлива"
+                              Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Name="axisEnergy1" Position="Bottom" Title="Время, с" />
+                            <oxy:LinearAxis Position="Left" Title="Температура, K" />
+                        </oxy:Plot.Axes>
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding AverageTau}" />
+                        </oxy:Plot.Series>
+                    </oxy:Plot>
+                    <oxy:Plot Name="plotEr"
+                              Title="Динамика температуры графита" Grid.ColumnSpan="2" Margin="0,246,-0.4,0" Grid.RowSpan="2">
+                        <oxy:Plot.Axes>
+                            <oxy:LinearAxis Name="axisEnergy2" Position="Left" Title="Температура, K" />
+                            <oxy:LinearAxis Position="Bottom" Title="Время, с" />
+                        </oxy:Plot.Axes>
+                    </oxy:Plot>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

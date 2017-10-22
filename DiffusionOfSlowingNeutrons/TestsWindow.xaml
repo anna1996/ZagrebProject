@@ -1,0 +1,24 @@
+﻿<Window x:Class="NuclearProject.TestsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NuclearProject"
+        mc:Ignorable="d"
+        Title="Тесты" Height="550" MinHeight="550" Width="820" MinWidth="820">
+    <StackPanel>
+        <StackPanel Grid.Row="0" VerticalAlignment="Top">
+            <Label Content="Тестирование" FontSize="20" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+        </StackPanel>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <Label Content="Выбирите тему для тестирования:" Margin="0,0,-0.4,0"/>
+        </StackPanel>
+        <ScrollViewer>
+            <StackPanel>
+                <RadioButton VerticalAlignment="Center" Content="Тема1"></RadioButton>
+                <RadioButton VerticalAlignment="Center" Content="Тема2"></RadioButton>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Content="Начать тест"></Button>
+    </StackPanel>
+</Window>
