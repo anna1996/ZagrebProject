@@ -4,7 +4,7 @@
         xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
         xmlns:h="http://helix-toolkit.org/wpf"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="NuclearProject.MainWindow"
-        Title="Исследование точечной динамики температур элементов ядерного реактора" Height="550" MinHeight="550" Width="820" MinWidth="820">
+        Title="Исследование точечной динамики температур элементов ядерного реактора" Height="620" MinHeight="600" Width="860" MinWidth="860">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -14,33 +14,87 @@
             <ColumnDefinition Width="124*" />
             <ColumnDefinition Width="669*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,579.6,0" >
-            <WrapPanel>
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,558.6,-0.2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <WrapPanel HorizontalAlignment="Center">
                 <Button x:Name="btnReference"
                     Click="Button_Click_Ref"
-                    Content="Справка" Height="64" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Left"/>
+                    Content="Справка" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Left" Background="CornflowerBlue"/>
                 <Button x:Name="btnTest"
                     Click="Button_Click_Tests"
-                    Content="Тесты" Height="64" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Right"/>
+                    Content="Тесты" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Right" Background="CornflowerBlue"/>
             </WrapPanel>
-            <StackPanel >
-                <Label Content="Мощность: W(t) = W0 + kt"/>
+            <StackPanel HorizontalAlignment="Center">
+                <Label Content="Мощность:"/>
                 <WrapPanel>
-                    <Label Content="W0 = " Width="50" HorizontalContentAlignment="Right"/>
+                    <Label Content="W(t) = " Width="50" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="txtStartPower"  PreviewTextInput="txtCoefficient_PreviewTextInput"
-                             Height="23" Width="80" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text="3200"/>
-                </WrapPanel>
-                <WrapPanel>
-                    <Label Content="t = " Width="50" HorizontalContentAlignment="Right"/>
-                    <TextBox x:Name="txtCoefficient" PreviewTextInput="txtCoefficient_PreviewTextInput" 
-                             Height="23" Width="80" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                             Height="23" Width="140" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                    <Label Content="мВт" Width="30" HorizontalContentAlignment="Right"/>
                 </WrapPanel>
             </StackPanel>
             <Button x:Name="Start" 
                     Click="Button_Click_Start" 
-                    Height="30" Margin="20, 20, 20, 20" Content="Начать моделирование" />
+                    Height="30" Margin="10, 10, 10, 10" Content="График функции мощности" FontWeight="Bold" Background="CornflowerBlue"/>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Выберите топливо и введите остальные параметры:</TextBlock>
+            <WrapPanel>
+                <Label Width="60" Content="Топливо:" HorizontalAlignment="Right"/>
+                <ComboBox Height="20" Width="120"></ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="60" Content="Cт:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="120" IsEnabled="False"></TextBox>
+                <Label Width="75" Content="Дж/кг*град" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="60" Content="pТ:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="120" IsEnabled="False"></TextBox>
+                <Label Width="75" Content="кг/м3" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="60" Content="Vт:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="120"></TextBox>
+                <Label Width="75" Content="м3" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Введите теплоноситель и введите объём теплоносителя:</TextBlock>
+            <WrapPanel>
+                <Label Width="100" Content="Теплоноситель :" HorizontalAlignment="Right"/>
+                <ComboBox Height="20" Width="100"></ComboBox>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="100" Content="C:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <Label Width="75" Content="Дж/кг*град" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="100" Content="p:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <Label Width="75" Content="кг/м3" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="100" Content="V:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="100"></TextBox>
+                <Label Width="75" Content="м3" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="100" Content="a:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <Label Width="75" Content="Вт/м2*град" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="100" Content="FT:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <Label Width="75" Content="м2" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <WrapPanel>
+                <Label Width="100" Content="t0:" HorizontalContentAlignment="Right"/>
+                <TextBox Height="20" Width="100"></TextBox>
+                <Label Width="75" Content="с" HorizontalAlignment="Left"/>
+            </WrapPanel>
+            <Button x:Name="StartModel" 
+                    Click="Button_Click_Start" 
+                    Height="30" Margin="10, 5, 10, 0" Content="Начать моделирование" FontWeight="Bold" Background="CornflowerBlue"/>
         </StackPanel>
-        <TabControl Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Width="580" Margin="0,0,-0.4,-0.2">
+        <TabControl Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Width="559" Margin="0,0,-0.4,-0.2">
             <TabItem Header="Графики">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -55,7 +109,7 @@
 
                     <oxy:Plot Name="plotAverageTau"
                               Title="Динамика температуры топлива"
-                              Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4">
+                              Grid.Row="0" Margin="10,0,-0.2,0" Grid.ColumnSpan="2">
                         <oxy:Plot.Axes>
                             <oxy:LinearAxis Name="axisEnergy1" Position="Bottom" Title="Время, с" />
                             <oxy:LinearAxis Position="Left" Title="Температура, K" />
@@ -65,7 +119,7 @@
                         </oxy:Plot.Series>
                     </oxy:Plot>
                     <oxy:Plot Name="plotEr"
-                              Title="Динамика температуры графита" Grid.ColumnSpan="2" Margin="0,246,-0.4,0" Grid.RowSpan="2">
+                              Title="Динамика температуры графита" Margin="10,0,-0.2,-0.8" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1">
                         <oxy:Plot.Axes>
                             <oxy:LinearAxis Name="axisEnergy2" Position="Left" Title="Температура, K" />
                             <oxy:LinearAxis Position="Bottom" Title="Время, с" />

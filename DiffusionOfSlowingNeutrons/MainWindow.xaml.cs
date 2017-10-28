@@ -27,11 +27,12 @@ namespace NuclearProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        ModellingSession session;
+        ModellingSession session; 
 
         public MainWindow()
         {
             InitializeComponent();
+            string[] arrFuel = new string[] { "Оксид урана", "Металлический уран", "Торий" };
         }
 
         private void Button_Click_Ref(object sender, RoutedEventArgs e) //кнопка "Справка"
