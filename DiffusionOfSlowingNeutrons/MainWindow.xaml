@@ -4,7 +4,7 @@
         xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
         xmlns:h="http://helix-toolkit.org/wpf"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="NuclearProject.MainWindow"
-        Title="Исследование точечной динамики температур элементов ядерного реактора" Height="620" MinHeight="600" Width="860" MinWidth="860">
+        Title="Исследование точечной динамики температур элементов ядерного реактора" Height="620" MinHeight="600" Width="900" MinWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -24,12 +24,25 @@
                     Content="Тесты" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Right" Background="CornflowerBlue"/>
             </WrapPanel>
             <StackPanel HorizontalAlignment="Center">
-                <Label Content="Мощность:"/>
+                <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">
+                    Введите функцию мощности вида 
+                    <LineBreak></LineBreak>
+                    W(t) = W0 + at + bt^2 +ct^3:
+                </TextBlock>
                 <WrapPanel>
-                    <Label Content="W(t) = " Width="50" HorizontalContentAlignment="Right"/>
-                    <TextBox x:Name="txtStartPower"  PreviewTextInput="txtCoefficient_PreviewTextInput"
-                             Height="23" Width="140" HorizontalAlignment="Center" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
-                    <Label Content="мВт" Width="30" HorizontalContentAlignment="Right"/>
+                    <Label Content="W(t) = " Width="40" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="txtStartPower"  PreviewTextInput="TxtCoefficient_PreviewTextInput"
+                             Height="20" Width="40" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                    <Label Content="+" Width="20" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="txtCoeffA"  PreviewTextInput="TxtCoefficient_PreviewTextInput"
+                             Height="20" Width="30" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                    <Label Content="t +" Width="30" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="txtCoeffB"  PreviewTextInput="TxtCoefficient_PreviewTextInput"
+                             Height="20" Width="30" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                    <Label Content="t^2 +" Width="40" HorizontalContentAlignment="Center"/>
+                    <TextBox x:Name="txtCoeffC"  PreviewTextInput="TxtCoefficient_PreviewTextInput"
+                             Height="20" Width="30" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="NoWrap" Text=""/>
+                    <Label Content="t^3 +" Width="30" HorizontalContentAlignment="Center"/>
                 </WrapPanel>
             </StackPanel>
             <Button x:Name="Start" 
@@ -38,56 +51,56 @@
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Выберите топливо и введите остальные параметры:</TextBlock>
             <WrapPanel>
                 <Label Width="60" Content="Топливо:" HorizontalAlignment="Right"/>
-                <ComboBox Height="20" Width="120"></ComboBox>
+                <ComboBox x:Name="cmbFuel" Height="25" Width="180" SelectionChanged="Change_Fuel"></ComboBox>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="60" Content="Cт:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="120" IsEnabled="False"></TextBox>
+                <TextBox x:Name="txtFuelC" Height="20" Width="120" IsEnabled="False" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="Дж/кг*град" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="60" Content="pТ:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="120" IsEnabled="False"></TextBox>
+                <TextBox x:Name="txtFuelP" Height="20" Width="120" IsEnabled="False" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="кг/м3" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="60" Content="Vт:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="120"></TextBox>
+                <TextBox x:Name="txtFuelV" Height="20" Width="120" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="м3" HorizontalAlignment="Left"/>
             </WrapPanel>
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Введите теплоноситель и введите объём теплоносителя:</TextBlock>
             <WrapPanel>
                 <Label Width="100" Content="Теплоноситель :" HorizontalAlignment="Right"/>
-                <ComboBox Height="20" Width="100"></ComboBox>
+                <ComboBox x:Name="cmbCoolant" Height="25" Width="150" SelectionChanged="Change_Coolant"></ComboBox>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="100" Content="C:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <TextBox x:Name="txtCoolantС" Height="20" Width="100" IsEnabled="False" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="Дж/кг*град" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="100" Content="p:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <TextBox x:Name="txtCoolantP" Height="20" Width="100" IsEnabled="False" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="кг/м3" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="100" Content="V:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="100"></TextBox>
+                <TextBox x:Name="txtCoolantV" Height="20" Width="100" IsEnabled="True" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="м3" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="100" Content="a:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <TextBox x:Name="txtCoolantA" Height="20" Width="100" IsEnabled="True" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="Вт/м2*град" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="100" Content="FT:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="100" IsEnabled="False"></TextBox>
+                <TextBox x:Name="txtCoolantF" Height="20" Width="100" IsEnabled="True" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="м2" HorizontalAlignment="Left"/>
             </WrapPanel>
             <WrapPanel>
                 <Label Width="100" Content="t0:" HorizontalContentAlignment="Right"/>
-                <TextBox Height="20" Width="100"></TextBox>
+                <TextBox x:Name="txtCoolantT" Height="20" Width="100" IsEnabled="True" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="с" HorizontalAlignment="Left"/>
             </WrapPanel>
             <Button x:Name="StartModel" 

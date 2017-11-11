@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="EnvironmentPreset.cs" />
+    <Compile Include="ModelNuclearReactor.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="StartModelWindow.xaml.cs">
       <DependentUpon>StartModelWindow.xaml</DependentUpon>
