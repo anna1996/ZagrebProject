@@ -68,7 +68,7 @@
                 <TextBox x:Name="txtFuelV" Height="20" Width="120" PreviewTextInput="TxtCoefficient_PreviewTextInput"></TextBox>
                 <Label Width="75" Content="м3" HorizontalAlignment="Left"/>
             </WrapPanel>
-            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Введите теплоноситель и введите объём теплоносителя:</TextBlock>
+            <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Выберите теплоноситель и введите объём теплоносителя:</TextBlock>
             <WrapPanel>
                 <Label Width="100" Content="Теплоноситель :" HorizontalAlignment="Right"/>
                 <ComboBox x:Name="cmbCoolant" Height="25" Width="150" SelectionChanged="Change_Coolant"></ComboBox>
@@ -108,7 +108,7 @@
                     Height="30" Margin="10, 5, 10, 0" Content="Начать моделирование" FontWeight="Bold" Background="CornflowerBlue"/>
         </StackPanel>
         <TabControl Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Width="559" Margin="0,0,-0.4,-0.2">
-            <TabItem Header="Графики">
+            <TabItem Header="">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -132,7 +132,7 @@
                         </oxy:Plot.Series>
                     </oxy:Plot>
                     <oxy:Plot Name="plotEr"
-                              Title="Динамика температуры графита" Margin="10,0,-0.2,-0.8" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1">
+                              Title="Динамика температуры теплоносителя" Margin="10,0,-0.2,-0.8" Grid.RowSpan="2" Grid.ColumnSpan="2" Grid.Row="1">
                         <oxy:Plot.Axes>
                             <oxy:LinearAxis Name="axisEnergy2" Position="Left" Title="Температура, K" />
                             <oxy:LinearAxis Position="Bottom" Title="Время, с" />

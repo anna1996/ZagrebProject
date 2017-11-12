@@ -35,16 +35,41 @@ namespace NuclearProject
         private class Fuel
         {
             private string name;
-            private float C, P, V, a, F;
+            private float C, P, V;
 
-            public Fuel(string name, float C, float P, float V, float a, float F)
+            public Fuel(string name, float C, float P, float V)
             {
                 this.name = name;
                 this.C = C;
                 this.P = P;
                 this.V = V;
+
+            }
+
+            public string getName() { return this.name; }
+
+            public float getP() { return this.P; }
+            public float getC() { return this.C; }
+            public float getV() { return this.V; }
+            //public float getA() { return this.a; }
+            //public float getF() { return this.F; }
+            //public float getT() { return this.T; }
+        }
+
+        private class Coolant
+        {
+            private string name;
+            private float C, P, V, a, F, T;
+
+            public Coolant(string name, float C, float P, float V, float a, float F, float T)
+            {
+                this.name = name;
+                this.P = P;
+                this.C = C;
+                this.V = V;
                 this.a = a;
                 this.F = F;
+                this.T = T;
             }
 
             public string getName() { return this.name; }
@@ -54,26 +79,7 @@ namespace NuclearProject
             public float getV() { return this.V; }
             public float getA() { return this.a; }
             public float getF() { return this.F; }
-        }
-
-        private class Coolant
-        {
-            private string name;
-            private float C, P, V;
-
-            public Coolant(string name, float C, float P, float V)
-            {
-                this.name = name;
-                this.P = P;
-                this.C = C;
-                this.V = V;
-            }
-
-            public string getName() { return this.name; }
-
-            public float getP() { return this.P; }
-            public float getC() { return this.C; }
-            public float getV() { return this.V; }
+            public float getT() { return this.T; }
         }
 
         public MainWindow()
@@ -81,15 +87,15 @@ namespace NuclearProject
             InitializeComponent();
 
             lFuels = new List<Fuel>();
-            lFuels.Add(new Fuel("Оксид урана", 318, 10960, 7.026f, 1240, 4850));
-            lFuels.Add(new Fuel("Металлический уран", 0, 0, 0, 0, 0));
-            lFuels.Add(new Fuel("Торий", 0, 0, 0, 0, 0));
+            lFuels.Add(new Fuel("Оксид урана", 318, 10960, 7.026f));
+            lFuels.Add(new Fuel("Металлический уран", 0, 0, 0));
+            lFuels.Add(new Fuel("Торий", 0, 0, 0));
 
             lCoolants = new List<Coolant>();
-            lCoolants.Add(new Coolant("Вода", 5670, 620, 180));
-            lCoolants.Add(new Coolant("Тяжёлая вода", 0, 0, 0));
-            lCoolants.Add(new Coolant("Свинец", 0, 0, 0));
-            lCoolants.Add(new Coolant("Натрий", 0, 0, 0));
+            lCoolants.Add(new Coolant("Вода", 5670, 620, 180, 1240, 4850, 0.68f));
+            lCoolants.Add(new Coolant("Тяжёлая вода", 0, 0, 0, 0, 0, 0));
+            lCoolants.Add(new Coolant("Свинец", 0, 0, 0, 0, 0, 0));
+            lCoolants.Add(new Coolant("Натрий", 0, 0, 0, 0, 0, 0));
 
             foreach (Fuel itemFuels in lFuels)
             {
@@ -146,32 +152,35 @@ namespace NuclearProject
 
         private void Change_Coolant(object sender, SelectionChangedEventArgs e)
         {
-            foreach(Coolant itemCoolants in lCoolants)
-            {
-                if ((string)cmbCoolant.SelectedValue == itemCoolants.getName())
-                {
-                    txtCoolantV.Text = itemCoolants.getV().ToString();
-                    txtCoolantP.Text = itemCoolants.getP().ToString();
-                    txtCoolantС.Text = itemCoolants.getC().ToString();
-                    break;
-                }
+            object selectedCoolantName = cmbCoolant.SelectedValue;
+            Coolant selectedCoolant = lCoolants.Find(item => item.getName() == (string)selectedCoolantName);
+            txtCoolantС.Text = selectedCoolant.getC().ToString();
+            txtCoolantP.Text = selectedCoolant.getP().ToString();
+            txtCoolantV.Text = selectedCoolant.getV().ToString();
+
+            object selectedFuelName = cmbFuel.SelectedValue;
+            if (selectedFuelName != null) {
+                txtCoolantA.Text = selectedCoolant.getA().ToString();
+                txtCoolantF.Text = selectedCoolant.getF().ToString();
+                txtCoolantT.Text = selectedCoolant.getT().ToString();
             }
         }
 
         private void Change_Fuel(object sender, SelectionChangedEventArgs e)
         {
+            object selectedFuelName = cmbFuel.SelectedValue;
+            Fuel selectedFuel = lFuels.Find(item => item.getName() == (string)selectedFuelName);
+            txtFuelC.Text = selectedFuel.getC().ToString();
+            txtFuelP.Text = selectedFuel.getP().ToString();
+            txtFuelV.Text = selectedFuel.getV().ToString();
 
-            foreach (Fuel itemFuels in lFuels)
+            object selectedCoolantName = cmbCoolant.SelectedValue;
+            if (selectedCoolantName != null)
             {
-                if ((string)cmbFuel.SelectedValue == itemFuels.getName())
-                {
-                    txtFuelC.Text = itemFuels.getC().ToString();
-                    txtFuelP.Text = itemFuels.getP().ToString();
-                    txtFuelV.Text = itemFuels.getV().ToString();
-                    txtCoolantA.Text = itemFuels.getA().ToString();
-                    txtCoolantF.Text = itemFuels.getF().ToString();
-                    break;
-                }
+                Coolant selectedCoolant = lCoolants.Find(item => item.getName() == (string)selectedCoolantName);
+                txtCoolantA.Text = selectedCoolant.getA().ToString();
+                txtCoolantF.Text = selectedCoolant.getF().ToString();
+                txtCoolantT.Text = selectedCoolant.getT().ToString();
             }
         }
 
