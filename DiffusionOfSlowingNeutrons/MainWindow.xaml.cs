@@ -120,6 +120,34 @@ namespace NuclearProject
             win.ShowDialog();
         }
 
+        private void Button_Click_PlotStart(object sender, RoutedEventArgs e)
+        {
+            float startPower = 0;
+            float coeffA = 0;
+            float coeffB = 0;
+            float coeffC = 0;
+
+            if ((txtStartPower.Text) != "")
+                startPower = float.Parse(txtStartPower.Text.Replace('.', ','));
+
+            if ((txtCoeffA.Text) != "")
+                coeffA = float.Parse(txtCoeffA.Text.Replace('.', ','));
+
+            if ((txtCoeffB.Text) != "")
+                coeffB = float.Parse(txtCoeffB.Text.Replace('.', ','));
+
+            if ((txtCoeffC.Text) != "")
+                coeffC = float.Parse(txtCoeffC.Text.Replace('.', ','));
+
+            string args = startPower
+                + " " + coeffA
+                + " " + coeffB
+                + " " + coeffC;
+            System.Diagnostics.Process.Start("Test.exe", args);
+
+
+        }
+
         private void Button_Click_Start(object sender, RoutedEventArgs e)
         {
             try

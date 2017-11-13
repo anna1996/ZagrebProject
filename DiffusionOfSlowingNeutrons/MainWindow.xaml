@@ -46,7 +46,7 @@
                 </WrapPanel>
             </StackPanel>
             <Button x:Name="Start" 
-                    Click="Button_Click_Start" 
+                    Click="Button_Click_PlotStart" 
                     Height="30" Margin="10, 10, 10, 10" Content="График функции мощности" FontWeight="Bold" Background="CornflowerBlue"/>
             <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">Выберите топливо и введите остальные параметры:</TextBlock>
             <WrapPanel>
