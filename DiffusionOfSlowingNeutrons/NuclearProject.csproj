@@ -40,6 +40,10 @@
     <Reference Include="HelixToolkit.Wpf">
       <HintPath>packages\HelixToolkit.Wpf.2015.1.629\lib\net45\HelixToolkit.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DataBase\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot">
       <HintPath>packages\OxyPlot.Core.1.0.0-unstable1882\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
@@ -68,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataBase\DataLoad.cs" />
     <Compile Include="EnvironmentPreset.cs" />
     <Compile Include="ModelNuclearReactor.cs" />
     <Compile Include="Result.cs" />
@@ -118,6 +123,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DataBase\database.json" />
     <None Include="diffusion.pdf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -128,6 +134,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataBase\Newtonsoft.Json.dll" />
+    <Resource Include="DataBase\Newtonsoft.Json.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
