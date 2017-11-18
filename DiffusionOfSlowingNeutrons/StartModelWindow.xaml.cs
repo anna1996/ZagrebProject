@@ -27,11 +27,18 @@ namespace NuclearProject
         int count;
         EnvironmentPreset env;
 
-        public StartModelWindow()
+        public StartModelWindow(string fileType)
         {
             InitializeComponent();
-            System.Uri pdf = new System.Uri(String.Format("file:///{0}/REFERENCE.pdf", Directory.GetCurrentDirectory()));
-            webHelp.Navigate(pdf);
+            if (fileType == "Reference")
+            {
+                System.Uri pdf = new System.Uri(String.Format("file:///{0}/REFERENCE.pdf", Directory.GetCurrentDirectory()));
+                webHelp.Navigate(pdf);
+            } else if(fileType == "Help")
+            {
+                System.Uri pdf = new System.Uri(String.Format("file:///{0}/HELP.pdf", Directory.GetCurrentDirectory()));
+                webHelp.Navigate(pdf);
+            }
         }
     }
 }

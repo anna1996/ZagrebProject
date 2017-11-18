@@ -115,7 +115,13 @@ namespace NuclearProject
 
         private void Button_Click_Ref(object sender, RoutedEventArgs e) //кнопка "Справка"
         {
-            StartModelWindow win = new StartModelWindow(); //вызываем окно справки
+            StartModelWindow win = new StartModelWindow("Reference"); //вызываем окно справки
+            win.ShowDialog();
+        }
+
+        private void Button_Click_Help(object sender, RoutedEventArgs e)
+        {
+            StartModelWindow win = new StartModelWindow("Help"); //вызываем окно справки
             win.ShowDialog();
         }
 

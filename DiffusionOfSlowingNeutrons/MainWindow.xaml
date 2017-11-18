@@ -16,12 +16,15 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,558.6,-0.2" HorizontalAlignment="Center" VerticalAlignment="Top">
             <WrapPanel HorizontalAlignment="Center">
-                <Button x:Name="btnReference"
-                    Click="Button_Click_Ref"
-                    Content="Справка" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Left" Background="CornflowerBlue"/>
                 <Button x:Name="btnTest"
                     Click="Button_Click_Tests"
                     Content="Тесты" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Right" Background="CornflowerBlue"/>
+                <Button x:Name="btnReference"
+                    Click="Button_Click_Ref"
+                    Content="Справка" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Left" Background="CornflowerBlue"/>
+                <Button x:Name="btnHelp"
+                    Click="Button_Click_Help"
+                    Content="Помощь" Height="30" MinWidth="105" Margin="2,2,2,2" HorizontalAlignment="Right" Background="CornflowerBlue"/>
             </WrapPanel>
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" Height="auto" FontWeight="Bold">
