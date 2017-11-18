@@ -37,7 +37,14 @@ namespace NuclearProject
 
         private void cmbThemes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+        }
 
+        private void Button_Click_Questions(object sender, RoutedEventArgs e)
+        {
+            string nameTheme = cmbThemes.SelectedValue.ToString();
+            Questions win = new Questions(nameTheme);
+            win.ShowDialog();
         }
     }
 }

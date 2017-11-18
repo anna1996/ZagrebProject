@@ -75,6 +75,9 @@
     <Compile Include="DataBase\DataLoad.cs" />
     <Compile Include="EnvironmentPreset.cs" />
     <Compile Include="ModelNuclearReactor.cs" />
+    <Compile Include="Questions.xaml.cs">
+      <DependentUpon>Questions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Result.cs" />
     <Compile Include="StartModelWindow.xaml.cs">
       <DependentUpon>StartModelWindow.xaml</DependentUpon>
@@ -94,6 +97,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Questions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StartModelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

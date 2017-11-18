@@ -19,7 +19,7 @@
                 <ComboBox x:Name="cmbThemes" Height="25" Width="400" SelectionChanged="cmbThemes_SelectionChanged" 
                           HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"></ComboBox>
             </StackPanel>
-            <Button Content="Начать тест" Margin="20, 20, 20, 20" Height="30" Background="CornflowerBlue"></Button>
+            <Button x:Name="btStartTest" IsEnabled="False" Click="Button_Click_Questions" Content="Начать тест" Margin="20, 20, 20, 20" Height="30" Background="CornflowerBlue"></Button>
         </StackPanel>
     </StackPanel>
 </Window>
