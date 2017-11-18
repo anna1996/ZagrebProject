@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Тесты" Height="550" MinHeight="550" Width="820" MinWidth="820">
     <StackPanel VerticalAlignment="Center">
-        <StackPanel Grid.Row="0" VerticalAlignment="Top">
+        <StackPanel VerticalAlignment="Top">
             <Label Content="Тестирование" FontSize="26" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center">
                 <Label Content="Выберите тему для тестирования" Margin="0,0,-0.4,0" FontWeight="Bold" FontSize="14" 
                        HorizontalAlignment="Center"/>
             </StackPanel>

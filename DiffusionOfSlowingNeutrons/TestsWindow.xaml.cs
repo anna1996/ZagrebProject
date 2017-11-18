@@ -26,10 +26,8 @@ namespace NuclearProject
             InitializeComponent();
 
             lThemes = new List<string>();
-            lThemes.Add("Коэффициент размножения");
-            lThemes.Add("Критичность");
-            lThemes.Add("Состав ЯР");
-            lThemes.Add("Деление");
+            lThemes.Add("Базовые понятия");
+            lThemes.Add("Тепловая динамика");
 
             foreach(string itemThemes in lThemes)
             {
