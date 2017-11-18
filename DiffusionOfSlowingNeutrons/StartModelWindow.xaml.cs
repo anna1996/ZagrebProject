@@ -34,10 +34,12 @@ namespace NuclearProject
             {
                 System.Uri pdf = new System.Uri(String.Format("file:///{0}/REFERENCE.pdf", Directory.GetCurrentDirectory()));
                 webHelp.Navigate(pdf);
+                this.Title = "Справка";
             } else if(fileType == "Help")
             {
                 System.Uri pdf = new System.Uri(String.Format("file:///{0}/HELP.pdf", Directory.GetCurrentDirectory()));
                 webHelp.Navigate(pdf);
+                this.Title = "Помощь";
             }
         }
     }

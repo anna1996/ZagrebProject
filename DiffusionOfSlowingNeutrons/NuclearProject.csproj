@@ -152,7 +152,7 @@
 copy $(ProjectDir)HELP.pdf $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>copy $(ProjectDir)DataBase $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>xcopy $(ProjectDir)DataBase $(TargetDir) /S /Y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
