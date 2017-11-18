@@ -37,7 +37,7 @@ namespace NuclearProject
 
         private void cmbThemes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            btStartTest.IsEnabled = cmbThemes.SelectedValue != null ? true : false;
         }
 
         private void Button_Click_Questions(object sender, RoutedEventArgs e)
