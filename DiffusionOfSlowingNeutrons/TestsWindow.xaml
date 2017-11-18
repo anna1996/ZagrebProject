@@ -6,19 +6,20 @@
         xmlns:local="clr-namespace:NuclearProject"
         mc:Ignorable="d"
         Title="Тесты" Height="550" MinHeight="550" Width="820" MinWidth="820">
-    <StackPanel>
+    <StackPanel VerticalAlignment="Center">
         <StackPanel Grid.Row="0" VerticalAlignment="Top">
-            <Label Content="Тестирование" FontSize="20" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
+            <Label Content="Тестирование" FontSize="26" HorizontalContentAlignment="Center" FontWeight="Bold"></Label>
         </StackPanel>
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
-            <Label Content="Выбирите тему для тестирования:" Margin="0,0,-0.4,0"/>
-        </StackPanel>
-        <ScrollViewer>
-            <StackPanel>
-                <RadioButton VerticalAlignment="Center" Content="Тема1"></RadioButton>
-                <RadioButton VerticalAlignment="Center" Content="Тема2"></RadioButton>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Label Content="Выберите тему для тестирования" Margin="0,0,-0.4,0" FontWeight="Bold" FontSize="14" 
+                       HorizontalAlignment="Center"/>
             </StackPanel>
-        </ScrollViewer>
-        <Button Content="Начать тест"></Button>
+            <StackPanel>
+                <ComboBox x:Name="cmbThemes" Height="25" Width="400" SelectionChanged="cmbThemes_SelectionChanged" 
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"></ComboBox>
+            </StackPanel>
+            <Button Content="Начать тест" Margin="20, 20, 20, 20" Height="30" Background="CornflowerBlue"></Button>
+        </StackPanel>
     </StackPanel>
 </Window>
