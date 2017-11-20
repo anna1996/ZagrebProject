@@ -81,7 +81,8 @@ namespace NuclearProject
             public float getF() { return this.F; }
             public float getT() { return this.T; }
         }
-
+   
+ 
         public MainWindow()
         {
 
@@ -97,7 +98,7 @@ namespace NuclearProject
             lFuels.Add(new Fuel("Торий", 0, 0, 0));
 
             lCoolants = new List<Coolant>();
-            lCoolants.Add(new Coolant("Вода", 5670, 620, 180, 1240, 4850, 0.68f));
+            lCoolants.Add(new Coolant("Вода", 5670, 620, 18, 1240, 4850, 0.68f));
             lCoolants.Add(new Coolant("Тяжёлая вода", 0, 0, 0, 0, 0, 0));
             lCoolants.Add(new Coolant("Свинец", 0, 0, 0, 0, 0, 0));
             lCoolants.Add(new Coolant("Натрий", 0, 0, 0, 0, 0, 0));
@@ -163,25 +164,39 @@ namespace NuclearProject
         {
             try
             {
-                float startPower = float.Parse(txtStartPower.Text);
-                float coeffA = float.Parse(txtCoeffA.Text.Replace('.',','));
+                float startPower = float.Parse(txtStartPower.Text) * 1000000.0f;
+                float coeffA = float.Parse(txtCoeffA.Text.Replace('.',',')) ;
                 float coeffB = float.Parse(txtCoeffB.Text.Replace('.', ','));
                 float coeffC = float.Parse(txtCoeffC.Text.Replace('.', ','));
 
-                float fuelC = float.Parse(txtFuelC.Text.Replace('.', ','));
-                float fuelP = float.Parse(txtFuelP.Text.Replace('.', ','));
-                float fuelV = float.Parse(txtFuelV.Text.Replace('.', ','));
+                float fuelC = float.Parse(txtFuelC.Text.Replace('.', ',')); //Ct
+                float fuelP = float.Parse(txtFuelP.Text.Replace('.', ',')); //pT
+                float fuelV = float.Parse(txtFuelV.Text.Replace('.', ',')); //Vt 
+                // const1 = Ct*pT*Vt
 
-                float coolantС = float.Parse(txtCoolantС.Text.Replace('.', ','));
-                float coolantP = float.Parse(txtCoolantP.Text.Replace('.', ','));
-                float coolantV = float.Parse(txtCoolantV.Text.Replace('.', ','));
-                float coolantA = float.Parse(txtCoolantA.Text.Replace('.', ','));
-                float coolantF = float.Parse(txtCoolantF.Text.Replace('.', ','));
-                float coolantT = float.Parse(txtCoolantT.Text.Replace('.', ','));
+                float coolantС = float.Parse(txtCoolantС.Text.Replace('.', ',')); //Сж
+                float coolantP = float.Parse(txtCoolantP.Text.Replace('.', ',')); //рЖ
+                float coolantV = float.Parse(txtCoolantV.Text.Replace('.', ',')); //Vж //const2
+                float coolantA = float.Parse(txtCoolantA.Text.Replace('.', ',')); //альфа
+                float coolantF = float.Parse(txtCoolantF.Text.Replace('.', ',')); //FT
+                float coolantT = float.Parse(txtCoolantT.Text.Replace('.', ',')); //t0
 
                 this.modelReactor = new ModelNuclearReactor(fuelC, fuelP, fuelV, coolantС, coolantP, coolantV, coolantA, coolantF, coolantT);
+                double fuelParams = modelReactor.getPt() * modelReactor.getVt() * modelReactor.getCt();
+                double alphaF = modelReactor.getFT() * modelReactor.geta();
+                double coolantParams = modelReactor.getP() * modelReactor.getC() * modelReactor.getV();
+                float t0 = modelReactor.getT0();
+                //int k = 5
 
-            } catch (System.FormatException exc)
+                EnvironmentPreset env = new EnvironmentPreset();
+                session = new ModellingSession(env, fuelParams, alphaF, coolantParams, t0, coeffA, coeffB, coeffC, startPower); //создаем новую сессию
+                this.DataContext = session;
+                session.ModelNextNeutron();
+                plotAverageTau.InvalidatePlot();
+                plotEr.InvalidatePlot();
+
+            }
+            catch (System.FormatException exc)
             {
                 MessageBox.Show("Введены не все параметры или введены неверно!", "Ошибка");
                 Console.WriteLine(exc.ToString() + " : Не все поля заполнены или заполены неверно.");

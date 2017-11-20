@@ -24,6 +24,7 @@ namespace NuclearProject
             this.Ct = Ct;
             this.pT = pT;
             this.Vt = Vt;
+            this.C = C;
             this.P = P;
             this.V = V;
             this.a = a;
@@ -34,6 +35,7 @@ namespace NuclearProject
         public float getCt() { return this.Ct; }
         public float getPt() { return this.pT; }
         public float getVt() { return this.Vt; }
+        public float getC() { return this.C; }
         public float getP() { return this.P; }
         public float getV() { return this.V; }
         public float geta() { return this.a; }

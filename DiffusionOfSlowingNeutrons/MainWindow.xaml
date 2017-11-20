@@ -140,6 +140,9 @@
                             <oxy:LinearAxis Name="axisEnergy2" Position="Left" Title="Температура, K" />
                             <oxy:LinearAxis Position="Bottom" Title="Время, с" />
                         </oxy:Plot.Axes>
+                        <oxy:Plot.Series>
+                            <oxy:LineSeries ItemsSource="{Binding DeltaT2}" />
+                        </oxy:Plot.Series>
                     </oxy:Plot>
                 </Grid>
             </TabItem>
